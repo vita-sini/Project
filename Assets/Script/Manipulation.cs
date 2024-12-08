@@ -11,6 +11,7 @@ public class Manipulation : MonoBehaviour
     private Movement _movement;
     private CheckingUpperBlock _checkingUpperBlock;
     private ScoreUI _scoreUI;
+    private Deck _deck;
 
     private Vector3 _offset; // —мещение мыши относительно центра блока
     private Plane _movementPlane; // ѕлоскость движени€ дл€ блока
@@ -26,6 +27,7 @@ public class Manipulation : MonoBehaviour
         _rotate = new Rotate();
         _movement = new Movement(_mouseWorldPosition, this);
         _scoreUI = GameObject.FindObjectOfType<ScoreUI>();
+        _deck = GameObject.FindObjectOfType<Deck>();
     }
 
     private void Update()
@@ -82,6 +84,7 @@ public class Manipulation : MonoBehaviour
         {
             // Ќачисл€ем очки только если блок выше начальной позиции
             _scoreUI.CalculateScore(initialPosition, block.transform.position, block);
+            _deck.OnTurnEnd();
         }
         else
         {
